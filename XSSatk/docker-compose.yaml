@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  attacker-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8090:8090"
+    volumes:
+      - ./stolen.txt:/app/stolen.txt
+
+
