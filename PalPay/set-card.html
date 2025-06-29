@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Set Your Default Card</title>
+    <style>
+        body {
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 32px 28px 24px 28px;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+        }
+        h1 {
+            text-align: center;
+            color: #4e54c8;
+            margin-bottom: 18px;
+        }
+        .card-visual {
+            width: 340px;
+            height: 200px;
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            border-radius: 18px;
+            margin: 30px auto 20px auto;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            color: #fff;
+            padding: 28px 24px;
+            position: relative;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .chip {
+            width: 48px;
+            height: 32px;
+            background: #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 18px;
+        }
+        .card-number {
+            font-size: 1.3em;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+        }
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95em;
+        }
+        .card-holder {
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        #card-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            max-width: 340px;
+            margin: 0 auto;
+        }
+        #card-form label {
+            margin-bottom: 4px;
+            font-weight: 600;
+            color: #4e54c8;
+            letter-spacing: 0.5px;
+        }
+        #card-form input {
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1.5px solid #d1d5db;
+            font-size: 1.08em;
+            background: #f8f9fa;
+            transition: border 0.2s;
+            outline: none;
+        }
+        #card-form input:focus {
+            border: 1.5px solid #4e54c8;
+            background: #f0f3ff;
+        }
+        #card-form button {
+            margin-top: 10px;
+            padding: 13px 0;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #4e54c8 60%, #8f94fb 100%);
+            color: #fff;
+            font-size: 1.15em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(78,84,200,0.10);
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        #card-form button:hover {
+            background: linear-gradient(90deg, #3b3f99 60%, #6d72c3 100%);
+            box-shadow: 0 4px 16px rgba(78,84,200,0.18);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Set Your Default Card</h1>
+        <div class="card-visual" id="card-visual">
+            <div class="chip"></div>
+            <div class="card-number" id="visual-card-number">•••• •••• •••• ••••</div>
+            <div class="card-details">
+                <div>
+                    <div style="font-size:0.8em;">Card Holder</div>
+                    <div class="card-holder" id="visual-holder">NAME SURNAME</div>
+                </div>
+                <div>
+                    <div style="font-size:0.8em;">Expires</div>
+                    <div id="visual-expiry">MM/YY</div>
+                </div>
+            </div>
+        </div>
+        <form id="card-form">
+            <label for="card-number">Card Number</label>
+            <input type="text" id="card-number" maxlength="16" required placeholder="1234 5678 9012 3456" pattern="\d{16}" inputmode="numeric">
+
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" maxlength="3" required placeholder="123" pattern="\d{3}" inputmode="numeric">
+
+            <label for="expiry">Expiry (MM/YY)</label>
+            <input type="text" id="expiry" maxlength="5" required placeholder="MM/YY" pattern="\d{2}/\d{2}" inputmode="numeric">
+
+            <label for="holder-name">Card Holder Name</label>
+            <input type="text" id="holder-name" maxlength="40" required placeholder="Name Surname">
+
+            <button type="submit">Save Card</button>
+        </form>
+    </div>
+    <script src="scripts/card.js"></script>
+</body>
+</html>
