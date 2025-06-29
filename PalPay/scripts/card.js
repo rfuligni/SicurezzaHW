@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function setCardToken() {
         const token = generateToken();
-        const expiresAt = Date.now() + 10 * 60 * 1000; // 4 minuti
+        const expiresAt = Date.now() + 10 * 60 * 1000; // 10 minuti
         sessionStorage.setItem('card_token', token);
         sessionStorage.setItem('card_token_expiry', expiresAt);
         return;

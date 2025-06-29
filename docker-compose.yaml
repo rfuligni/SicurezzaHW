@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  palpay:
+    build: ./PalPay
+    ports:
+      - "8080:8080"
+    networks:
+      - sicurezza-net
+
+  attacker-server:
+    build: ./XSSatk
+    ports:
+      - "8090:8090"
+    volumes:
+      - ./XSSatk/stolen.txt:/app/stolen.txt
+    networks:
+      - sicurezza-net
+
+networks:
+  sicurezza-net:
+    driver: bridge
